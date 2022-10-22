@@ -1,0 +1,311 @@
+./sdriver.pl -t trace14.txt -s ./tsh -a "-p"
+#
+# trace14.txt - Simple error handling
+#
+tsh> ./bogus
+argc=2
+gv:./tsh
+gv:-p
+---cmdline:/bin/echo tsh> ./bogus
+
+evalhere1
+ here 1 ;
+ here 2 ;
+ here 3 ;
+ here 7 ;
+ here 8 ;
+evalhere2
+---stdouthere
+
+
+---cmdline:./bogus
+
+evalhere1
+ here 1 ;
+ here 2 ;
+ here 3 ;
+ here 4 ;
+ here 5 ;
+ here 6 ;
+./bogus: Command not found
+---stdouthere
+
+
+---cmdline:./bogus
+
+evalhere1
+ here 1 ;
+ here 2 ;
+ here 3 ;
+ here 7 ;
+ here 8 ;
+evalhere2
+tsh> ./myspin 4 &
+---stdouthere
+
+
+---cmdline:/bin/echo -e tsh> ./myspin 4 \046
+
+evalhere1
+ here 1 ;
+ here 2 ;
+ here 3 ;
+ here 7 ;
+ here 8 ;
+evalhere2
+---stdouthere
+
+
+---cmdline:./myspin 4 &
+
+evalhere1
+ here 1 ;
+ here 2 ;
+ here 3 ;
+ here 7 ;
+ [1] (2865) ./myspin 4 &
+ here 9 ;
+evalhere2
+tsh> fg
+---stdouthere
+
+
+---cmdline:/bin/echo tsh> fg
+
+evalhere1
+ here 1 ;
+ here 2 ;
+ here 3 ;
+ here 7 ;
+ here 8 ;
+evalhere2
+---stdouthere
+
+
+---cmdline:fg
+
+evalhere1
+ here 1 ;
+fg command requires PID or %jobid argument
+evalhere2
+tsh> bg
+---stdouthere
+
+
+---cmdline:/bin/echo tsh> bg
+
+evalhere1
+ here 1 ;
+ here 2 ;
+ here 3 ;
+ here 7 ;
+ here 8 ;
+evalhere2
+---stdouthere
+
+
+---cmdline:bg
+
+evalhere1
+ here 1 ;
+bg command requires PID or %jobid argument
+evalhere2
+tsh> fg a
+---stdouthere
+
+
+---cmdline:/bin/echo tsh> fg a
+
+evalhere1
+ here 1 ;
+ here 2 ;
+ here 3 ;
+ here 7 ;
+ here 8 ;
+evalhere2
+---stdouthere
+
+
+---cmdline:fg a
+
+evalhere1
+ here 1 ;
+fg: argument must be a PID or %jobid
+evalhere2
+tsh> bg a
+---stdouthere
+
+
+---cmdline:/bin/echo tsh> bg a
+
+evalhere1
+ here 1 ;
+ here 2 ;
+ here 3 ;
+ here 7 ;
+ here 8 ;
+evalhere2
+---stdouthere
+
+
+---cmdline:bg a
+
+evalhere1
+ here 1 ;
+bg: argument must be a PID or %jobid
+evalhere2
+tsh> fg 9999999
+---stdouthere
+
+
+---cmdline:/bin/echo tsh> fg 9999999
+
+evalhere1
+ here 1 ;
+ here 2 ;
+ here 3 ;
+ here 7 ;
+ here 8 ;
+evalhere2
+---stdouthere
+
+
+---cmdline:fg 9999999
+
+evalhere1
+ here 1 ;
+(9999999): No such process
+evalhere2
+tsh> bg 9999999
+---stdouthere
+
+
+---cmdline:/bin/echo tsh> bg 9999999
+
+evalhere1
+ here 1 ;
+ here 2 ;
+ here 3 ;
+ here 7 ;
+ here 8 ;
+evalhere2
+---stdouthere
+
+
+---cmdline:bg 9999999
+
+evalhere1
+ here 1 ;
+(9999999): No such process
+evalhere2
+tsh> fg %2
+---stdouthere
+
+
+---cmdline:/bin/echo tsh> fg %2
+
+evalhere1
+ here 1 ;
+ here 2 ;
+ here 3 ;
+ here 7 ;
+ here 8 ;
+evalhere2
+---stdouthere
+
+
+---cmdline:fg %2
+
+evalhere1
+ here 1 ;
+%2: No such job
+evalhere2
+tsh> fg %1
+---stdouthere
+
+
+---cmdline:/bin/echo tsh> fg %1
+
+evalhere1
+ here 1 ;
+ here 2 ;
+ here 3 ;
+ here 7 ;
+ here 8 ;
+evalhere2
+---stdouthere
+
+
+---cmdline:fg %1
+
+evalhere1
+ here 1 ;
+Job [1] (2865) stopped by signal 20
+evalhere2
+tsh> bg %2
+---stdouthere
+
+
+---cmdline:/bin/echo tsh> bg %2
+
+evalhere1
+ here 1 ;
+ here 2 ;
+ here 3 ;
+ here 7 ;
+ here 8 ;
+evalhere2
+---stdouthere
+
+
+---cmdline:bg %2
+
+evalhere1
+ here 1 ;
+%2: No such job
+evalhere2
+tsh> bg %1
+---stdouthere
+
+
+---cmdline:/bin/echo tsh> bg %1
+
+evalhere1
+ here 1 ;
+ here 2 ;
+ here 3 ;
+ here 7 ;
+ here 8 ;
+evalhere2
+---stdouthere
+
+
+---cmdline:bg %1
+
+evalhere1
+ here 1 ;
+[1] (2865) ./myspin 4 &
+ evalhere2
+tsh> jobs
+---stdouthere
+
+
+---cmdline:/bin/echo tsh> jobs
+
+evalhere1
+ here 1 ;
+ here 2 ;
+ here 3 ;
+ here 7 ;
+ here 8 ;
+evalhere2
+---stdouthere
+
+
+---cmdline:jobs
+
+evalhere1
+ here 1 ;
+[1] (2865) Running ./myspin 4 &
+evalhere2
+---stdouthere
